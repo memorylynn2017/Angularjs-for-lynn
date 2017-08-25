@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <title>手风琴效果</title>
+    <link rel="stylesheet" href="../scripts/angular-1.4.0-rc.2/docs/components/bootstrap-3.1.1/css/bootstrap.min.css">
+    <style>
+        .panel-heading{
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+<div class="container" ng-controller="collapseController">
+    <h2>利用bootstrap，angular自定义指令实现手风琴效果</h2>
+    <collapse items="collapseItems"></collapse>
+</div>
+<script src="../scripts/angular-1.4.0-rc.2/angular.min.js"></script>
+<script src="collapse.js"></script>
+</body>
+</html>

@@ -1,0 +1,17 @@
+<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+    <div class="panel panel-default" ng-repeat="item in collapseItems">
+        <div class="panel-heading" ng-click="changeStatus($index)">
+            <h4 class="panel-title">
+                <a role="button" ng-href="">
+                    {{item.title}}
+                </a>
+            </h4>
+        </div>
+        <div class="panel-collapse" ng-class="{collapse:isClose[$index]}">
+            <div class="panel-body">
+                {{isClose[$index]}}
+                {{item.content}}
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <title>自定义指令scope</title>
+</head>
+<body ng-controller="myAppCtr">
+非自定义指令：
+<ur>
+    <li ng-repeat="item in items">{{item.name}}</li>
+    <li>{{title}}</li>
+</ur>
+
+<hr/>
+<directive-scope items="items" say="hello" title="{{title}}"></directive-scope>
+
+<hr>
+<directive-scope2 items="items" say="hello" title="{{title}}"></directive-scope2>
+<hr>
+<script src="../scripts/angular-1.4.0-rc.2/angular.js"></script>
+<script src="directive_scope.js"></script>
+</body>
+</html>

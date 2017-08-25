@@ -1,5 +1,3 @@
-# Angularjs-for-lynn
-Just Angularjs repository
-HI Humans:
-
-I Like Node.js and Angular.js
+# angularjs-
+开始学习angularjs
+这是一个分支练习

@@ -1,0 +1,38 @@
+.btn:disabled {
+    background-color: #ddd;
+}
+
+.total {
+    text-align: right;
+    height: 50px;
+    line-height: 50px;
+    background-color: hsl(0, 0%, 90%);
+    padding-right: 10%;
+}
+
+.total>span {
+    margin-right: 30px;
+    font-weight: bold;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.mark {
+    color: red;
+}
+th,td{
+    text-align: center;
+}
+.discount{
+    color:#000000;
+    text-decoration:line-through;
+}
+.empty{
+    margin-top:5px;
+    margin-bottom:10px;
+    height:80px;
+    line-height:80px;
+    text-align: center;
+}

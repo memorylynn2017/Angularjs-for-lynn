@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <title>filter学习</title>
+</head>
+<body ng-controller="filterCtr">
+<div>
+    <fieldset>
+        <legend>1、currency</legend>
+        1、默认绑定：{{money}} <br>
+        2、默认currency符号($): {{money|currency}} <br>
+        3、自 定 义 符 号：{{money|currency:'CNY'}} <br> <!--RMB可以换成任意字符，此处仅以RMB举例-->
+        4、自定义小数位数: {{money|currency:'CNY':5}}
+    </fieldset>
+    <fieldset>
+        <legend>2、number</legend>
+        1、默认绑定：{{money}} <br>
+        2、默认number: {{money|number}} <!--默认保留了3位小数--><br>
+        3、保留2小数位：{{money|number:2}} <!--保留2位小数，发生四舍五入-->
+    </fieldset>
+    <fieldset>
+        <legend>3、date</legend>
+        1、默认绑定：{{today}} <br>
+        2、yyyy-MM-dd HH:mm:ss： {{today|date:'yyyy-MM-dd HH:mm:ss'}} <br>
+        3、yyyy-MM-dd HH:mm:ss a： {{today|date:'yyyy-MM-dd HH:mm:ss a'}} <br>
+        4、yyyy-M-d hh:mm:ss： {{today|date:'yyyy-M-d hh:mm:ss'}} <br>
+        5、yyyy/MM/dd HH:mm:ss： {{today|date:'MM/dd/yyyy EEE HH:mm:ss'}} <br>
+    </fieldset>
+    <fieldset>
+        <legend>4、lowercase、uppercase</legend>
+        1、默认绑定：{{str}} <br>
+        2、lowercase:{{str|lowercase}}<br>
+        2、uppercase:{{str|uppercase}}
+    </fieldset>
+    <fieldset>
+        <legend>5、limitTo</legend>
+        1、默认绑定：{{str}}<br>
+        2、limitTo:6：{{str|limitTo:6}}<br>
+        3、limitTo:6:3：{{str|limitTo:6:3}}
+    </fieldset>
+    <fieldset>
+        <legend>6、orderBy</legend>
+        1、默认绑定：{{items}}<br>
+        2、orderBy:id：{{items|orderBy:'id'}}<br>
+        3、orderBy:-id：{{items|orderBy:'-id'}}
+        4、orderBy:id:true：{{items|orderBy:'id':true}}
+    </fieldset>
+    {{[22,34,12,3,56]|orderBy:'':true}}<br>
+    <fieldset>
+        <legend>7、filter</legend>
+        1、filter:'00'：{{items|filter:'00' }} <br>
+        2、filter:{id:'001'}：{{items|filter:{id:'001'} }}<br>
+        3、filter:item.id：{{items|filter:item.id}} <br>
+        4、filter:'00'：{{items|filter:item.$ }} <br>
+    </fieldset>
+</div>
+<script src="../scripts/angular-1.4.0-rc.2/angular.js"></script>
+<script>
+    var myApp = angular.module('myApp', []);
+    myApp.controller('filterCtr', ['$scope', '$filter', function ($scope, $filter) {
+        $scope.money = 126893.5564;
+        $scope.today = new Date();
+        $scope.str = 'Hello AngularJs';
+        $scope.items = [{id: 1001, name: '赵云', country: '蜀'}, {id: 1003, name: '关羽', country: '蜀'}, {id: 1002,name: '马超',country: '蜀'}];
+        $scope.test = $filter('currency')(142, 'CNY', 5);
+
+        $scope.item={};
+        $scope.item.id='001';
+        console.log($scope.items[0]);
+        console.log($filter('json')($scope.items[0]));
+    }])
+</script>
+</body>
+</html>

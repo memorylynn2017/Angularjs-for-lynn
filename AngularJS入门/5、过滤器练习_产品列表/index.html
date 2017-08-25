@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="productList">
+<head>
+    <meta charset="UTF-8">
+    <title>产品列表</title>
+    <link rel="stylesheet" href="../scripts/angular-1.4.0-rc.2/docs/components/bootstrap-3.1.1/css/bootstrap.min.css">
+    <style>
+        .actived {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+<div class="container" ng-controller="productController">
+    <nav class="navbar navbar-default">
+        <form class="navbar-form navbar-left" role="search">
+            <div class="form-group">
+                全局搜索：<input type="text" ng-model="search.$" class="form-control" placeholder="Search">
+                <sapn class="small">由于商品的URL没有展示，全局搜索看上去可能会有错，其实没有问题</sapn>
+                <br><br>
+                商品信息搜索：<input type="text" ng-model="search.title" class="form-control" placeholder="Search">
+                商品类型搜索：<input type="text" ng-model="search.type" class="form-control" placeholder="Search">
+            </div>
+        </form>
+    </nav>
+    <!--filter的几种用法：-->
+    <!--1、ng-repeat中直接过滤，filter：xxx,会匹配所有value值==xxx的项-->
+    <!--2、ng-repeat中直接过滤某个属性，filter：{id：xxx },会匹配id==xxx的项-->
+    <!--3、定义xxx model时就确定对应的属性，在filter中直接过滤，ng-model="xxx.id" , filter：xxx,仍会匹配id=xxx的项，效果同2-->
+    <!--第三种效果感觉更灵活一些，尤其是在同时匹配所有值和某个属性匹配时更方便-->
+    <table class="table table-hover">
+        <tr>
+            <th ng-class="{dropup:Ascending}" ng-click="sort('title')">商品信息<span class="caret"
+                                                                                 ng-class="{actived:orderByType.indexOf('title')!==-1}"></span>
+            </th>
+            <th ng-class="{dropup:Ascending}" ng-click="sort('type')">类型<span class="caret"
+                                                                              ng-class="{actived:orderByType.indexOf('type')!==-1}"></span>
+            </th>
+            <th ng-class="{dropup:Ascending}" ng-click="sort('price')">单价（元）<span class="caret"
+                                                                                  ng-class="{actived:orderByType.indexOf('price')!==-1}"></span>
+            </th>
+            <th ng-class="{dropup:Ascending}" ng-click="sort('quantity')">库存<span class="caret"
+                                                                                  ng-class="{actived:orderByType.indexOf('quantity')!==-1}"></span>
+            </th>
+        </tr>
+        <tr ng-repeat="item in products|filter:search|orderBy:orderByType">
+            <td>{{item.title}}</td>
+            <td>{{item.type}}</td>
+            <td>{{item.price|currency:'(RMB)'}}</td>
+            <td>{{item.quantity|number}}</td>
+        </tr>
+    </table>
+</div>
+<script src="../scripts/angular-1.4.0-rc.2/angular.js"></script>
+<script src="productList.js"></script>
+</body>
+</html>
